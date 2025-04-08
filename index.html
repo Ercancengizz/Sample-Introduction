@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porsche 911 Turbo S - Performansın Zirvesi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: #eee;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #000;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .logo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            color: #fff;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #e30000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 16px;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: #e30000;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e30000;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/800') center/cover no-repeat;
+            z-index: -1;
+            filter: brightness(0.4) contrast(1.2);
+            animation: zoomIn 20s infinite alternate;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(227, 0, 0, 0.7);
+            animation: slideIn 1s ease-out;
+        }
+
+        .hero-title span {
+            color: #e30000;
+            display: block;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 600px;
+            color: #ccc;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #910000, #e30000);
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 0 20px rgba(227, 0, 0, 0.7);
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(227, 0, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(227, 0, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(227, 0, 0, 0);
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .performance {
+            padding: 100px 0;
+            background-color: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .performance::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #0a0a0a 70%);
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: #e30000;
+            margin: 20px auto 0;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 30px;
+            margin: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(227, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #e30000, transparent);
+            animation: borderAnimation 2s infinite linear;
+        }
+
+        @keyframes borderAnimation {
+            0% {
+                background-position: -300px 0;
+            }
+            100% {
+                background-position: 300px 0;
+            }
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(227, 0, 0, 0.3);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #e30000;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+        }
+
+        .car-features {
+            padding: 100px 0;
+            background-color: #0f0f0f;
+            position: relative;
+        }
+
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .feature-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            padding: 30px;
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #e30000;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .feature-title::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #e30000;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #aaa;
+        }
+
+        .gallery {
+            padding: 100px 0;
+            background-color: #080808;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.5s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item:hover img {
+            filter: brightness(0.7);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .contact {
+            padding: 100px 0;
+            background-color: #0a0a0a;
+            position: relative;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .contact-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .contact-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #e30000;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #e30000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .contact-text {
+            color: #ccc;
+            font-size: 18px;
+        }
+
+        footer {
+            background-color: #000;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .footer-text a {
+            color: #e30000;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .nav ul {
+                display: none;
+            }
+
+            .stat-item {
+                min-width: 100%;
+            }
+
+            .feature-card {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container logo">
+            <h1>Porsche <span>911</span> Turbo S</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Ana Sayfa</a></li>
+                    <li><a href="#performance">Performans</a></li>
+                    <li><a href="#features">Özellikler</a></li>
+                    <li><a href="#gallery">Galeri</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Efsanenin <span>Zirvesi</span></h1>
+            <p class="hero-description">Yeni Porsche 911 Turbo S, eşsiz performansı ve benzersiz tasarımıyla otomobil dünyasının zirvesinde. 650 beygir güç, 0-100 km/s hızlanmasını sadece 2.7 saniyede tamamlayarak sizi bambaşka bir boyuta taşıyor.</p>
+            <a href="#contact" class="cta-button">Test Sürüşü Rezervasyonu</a>
+        </div>
+    </section>
+
+    <section id="performance" class="performance">
+        <div class="container">
+            <h2 class="section-title">Üstün Performans</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">650</div>
+                    <div class="stat-label">Beygir Gücü</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2.7</div>
+                    <div class="stat-label">0-100 km/s (saniye)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">330</div>
+                    <div class="stat-label">Maksimum Hız (km/s)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">800</div>
+                    <div class="stat-label">Tork (Nm)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="car-features">
+        <div class="container">
+            <h2 class="section-title">Lüks ve Teknoloji</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <h3 class="feature-title">Aerodinamik Tasarım</h3>
+                    <p class="feature-description">Aktif aerodinamik elemanlar, maksimum yol tutuş ve stabilite için otomatik olarak ayarlanır. Yenilikçi arka kanat tasarımı, yüksek hızlarda daha fazla yere basma kuvveti sağlar.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Karbon Seramik Frenler</h3>
+                    <p class="feature-description">Porsche Ceramic Composite Brake (PCCB) sistemi, yüksek hızlarda bile üstün frenleme performansı ve dayanıklılık sunar. Isıya karşı dayanıklı yapısı ile fren mesafesini minimize eder.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Sport Chrono Paketi</h3>
+                    <p class="feature-description">Launch Control, Sport Plus modu ve performans odaklı göstergeler ile donatılmış bu paket, pistlerde bile üstün sürüş deneyimi sunar. Direksiyondaki mod seçicisi ile anında karakter değişimi yaşayın.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">İleri Süspansiyon Sistemi</h3>
+                    <p class="feature-description">Porsche Active Suspension Management (PASM) teknolojisi, yol koşullarına göre süspansiyon sertliğini otomatik olarak ayarlar ve her koşulda konfor ile performansı dengeler.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Akıllı İç Mekan</h3>
+                    <p class="feature-description">Bütünleşik dokunmatik ekran teknolojisi, ses kontrolü ve sürücü odaklı ergonomik tasarımla, teknoloji ve lüks bir arada. Kesintisiz bağlantı için Apple CarPlay ve Android Auto desteği.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Üstün Ses Sistemi</h3>
+                    <p class="feature-description">Burmester® 3D High-End Surround Sound System, 855 watt güç ve 13 hoparlör ile konser salonu kalitesinde ses deneyimi sunar. Motor sesi ile mükemmel bir uyum içinde çalışır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Galeri</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Porsche 911 Turbo S Ön">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Porsche 911 Turbo S Arka">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Porsche 911 Turbo S Yan">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Porsche 911 Turbo S İç Mekan">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Porsche 911 Turbo S Motor">
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Porsche 911 Turbo S Jant">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">İletişime Geçin</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 class="contact-title">Bize Ulaşın</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">Porsche Center İstanbul, Bağdat Cad. No:123</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-text">+90 212 345 67 89</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-text">info@porsche-istanbul.com</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🕐</div>
+                            <div class="contact-text">Hafta içi: 09:00 - 18:00<br>Cumartesi: 10:00 - 16:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2025 Porsche Türkiye. Tüm hakları saklıdır. Bu sayfa <a href="#">GitHub</a> üzerinde bulunmaktadır.</p>
+        </div>
+    </footer>
+</body>
+</html>
